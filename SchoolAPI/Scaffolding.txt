@@ -1,0 +1,2 @@
+Scaffold-DbContext 'Server=(localdb)\MSSQLLocalDB;Initial Catalog=School;Integrated Security=True;' Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data\Entities -Context ApiContext -Namespace Data -NoOnConfiguring 
+
