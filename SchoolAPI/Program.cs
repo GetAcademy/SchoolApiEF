@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddTransient()<IStudentService, StudentService>();
 //builder.Services.AddScoped()<IStudentService, StudentService>();
 builder.Services.AddSingleton<IStudentService, StudentService>();
-builder.Services.AddSingleton<IStudentRepository, StudentRepository>();
+builder.Services.AddSingleton<IStudentRepository, StudentInMemoryRepository>();
 
 
 var app = builder.Build();

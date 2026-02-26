@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Data;
+namespace DbModels;
 
 public partial class Student
 {

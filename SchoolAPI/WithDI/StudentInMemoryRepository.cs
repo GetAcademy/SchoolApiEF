@@ -2,7 +2,7 @@
 
 namespace SchoolAPI.WithDI
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentInMemoryRepository : IStudentRepository
     {
         private readonly List<Student> _students = [];
         private int _nextId = 1;

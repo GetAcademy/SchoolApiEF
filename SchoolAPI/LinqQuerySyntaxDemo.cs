@@ -1,4 +1,5 @@
-﻿using Data;
+﻿/*
+ using Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace SchoolAPI
@@ -29,3 +30,5 @@ namespace SchoolAPI
         }
     }
 }
+
+*/
