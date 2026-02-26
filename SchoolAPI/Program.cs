@@ -1,11 +1,18 @@
+using DbModels;
+using Microsoft.EntityFrameworkCore;
+using SchoolAPI.Infrastructure;
 using SchoolAPI.Model;
 using SchoolAPI.WithDI;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddTransient()<IStudentService, StudentService>();
-//builder.Services.AddScoped()<IStudentService, StudentService>();
 builder.Services.AddSingleton<IStudentService, StudentService>();
-builder.Services.AddSingleton<IStudentRepository, StudentInMemoryRepository>();
+//builder.Services.AddSingleton<IStudentRepository, StudentInMemoryRepository>();
+builder.Services.AddSingleton<IStudentRepository, StudentEntityFrameworkRepository>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ApiContext>(options =>
+    options.UseSqlServer(connectionString));
 
 
 var app = builder.Build();

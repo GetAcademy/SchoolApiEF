@@ -1,10 +1,10 @@
 ﻿using DbModels;
-using SchoolAPI.Model;
-using Student = DbModels.Student;
+using DbStudent = DbModels.Student;
+using DomainStudent = SchoolAPI.Model.Student;
 
 namespace SchoolAPI.Infrastructure
 {
-    public class StudentEntityFrameworkRepository : SchoolAPI.WithDI.IStudentRepository
+    public class StudentEntityFrameworkRepository : WithDI.IStudentRepository
     {
         private ApiContext _apiContext;
 
@@ -12,26 +12,26 @@ namespace SchoolAPI.Infrastructure
         {
             _apiContext = apiContext;
         }
-        public List<SchoolAPI.Model.Student> GetAll()
+        public List<DomainStudent> GetAll()
         {
             return _apiContext.Students
-                .Select(s => new SchoolAPI.Model.Student(s.Id, s.Name, s.Age))
+                .Select(s => new DomainStudent(s.Id, s.Name, s.Age))
                 .ToList();
         }
 
-        public SchoolAPI.Model.Student? GetById(int id)
+        public DomainStudent GetById(int id)
         {
             var student = _apiContext.Students.FirstOrDefault(s => s.Id == id);
             if (student == null) return null;
-            return new SchoolAPI.Model.Student(student.Id, student.Name, student.Age);
+            return new DomainStudent(student.Id, student.Name, student.Age);
         }
 
-        public Model.Student Create(string name, int age)
+        public DomainStudent Create(string name, int age)
         {
-            var dbStudent = new Student{Name = name, Age = age};
+            var dbStudent = new DbStudent{Name = name, Age = age};
             _apiContext.Students.Add(dbStudent);
             _apiContext.SaveChanges();
-            return new SchoolAPI.Model.Student(dbStudent.Id, dbStudent.Name, dbStudent.Age);
+            return new DomainStudent(dbStudent.Id, dbStudent.Name, dbStudent.Age);
         }
     }
 }
