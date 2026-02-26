@@ -1,0 +1,33 @@
+@SchoolAPI_HostAddress = http://localhost:5104
+
+### Hent alle studenter
+GET {{SchoolAPI_HostAddress}}/students
+Accept: application/json
+
+### Hent en spesifikk student
+GET {{SchoolAPI_HostAddress}}/students/1
+Accept: application/json
+
+### Opprett ny student
+POST {{SchoolAPI_HostAddress}}/students
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Terje",
+  "age": 49
+}
+
+### Opprett enda en student
+POST {{SchoolAPI_HostAddress}}/students
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Helene",
+  "age": 21
+}
+
+### Negativ test – ikke eksisterende student
+GET {{SchoolAPI_HostAddress}}/students/999
+Accept: application/json
